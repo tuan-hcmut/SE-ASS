@@ -40,7 +40,9 @@ const Login: React.FC = () => {
 
               <div className="flex gap-10">
                 <div className="p-6 bg-white rounded-full cursor-pointer ">
-                  <FcGoogle className="text-4xl" />
+                  <Link to={"http://localhost:5000/auth/google"}>
+                    <FcGoogle className="text-4xl" />
+                  </Link>
                 </div>
                 <div
                   onClick={() => {

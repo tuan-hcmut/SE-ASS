@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: communication-redis-depl
+  name: redis-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: communication-redis
+      app: redis
   template:
     metadata:
       labels:
-        app: communication-redis
+        app: redis
     spec:
       containers:
-        - name: communication-redis
-          image: us.gcr.io/tiket-372908/communication-redis
+        - name: redis
+          image: us.gcr.io/tiket-372908/redis
           env:
             - name: MONGO_URL
-              value: "mongodb://communication-redis-mongo-srv:27017/communication-redis"
+              value: "mongodb://redis-mongo-srv:27017/redis"
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
@@ -27,12 +27,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: communication-redis-srv
+  name: redis-srv
 spec:
   selector:
-    app: communication-redis
+    app: redis
   ports:
-    - name: communication-redis
+    - name: redis
       protocol: TCP
       port: 3000
       targetPort: 3000

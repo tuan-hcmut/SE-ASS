@@ -1,28 +1,39 @@
 const express = require("express");
 import "express-async-errors";
 import cookieSession from "cookie-session";
+import passport from "passport";
+import { errorHandler, NotFoundError } from "@ltt-first-package/common";
+
+require("./services/passport");
+const keys = require("./config/keys");
+
 const app = express();
 
-// import { currentuserRouter } from "./routes/current-user";
-// import { signinRouter } from "./routes/signin";
+import { currentuserRouter } from "./routes/current-user";
+import { signinRouter } from "./routes/signin";
 // import { signoutRouter } from "./routes/signout";
 // import { signupRouter } from "./routes/signup";
-import { errorHandler, NotFoundError } from "@ltt-first-package/common";
 
 app.set("trust proxy", true);
 app.use(express.json({ limit: "10kb" }));
+// app.use(
+//   cookieSession({
+//     signed: false,
+//     secure: process.env.NODE_ENV !== "test",
+//   })
+// );
+
 app.use(
   cookieSession({
-    signed: false,
-    secure: process.env.NODE_ENV !== "test",
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.cookieKey],
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.get("/", (req: any, res: any) => {
-  res.send("hello");
-});
-// app.use(currentuserRouter);
-// app.use(signinRouter);
+app.use(currentuserRouter);
+app.use(signinRouter);
 // app.use(signoutRouter);
 // app.use(signupRouter);
 
