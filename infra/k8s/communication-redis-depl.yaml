@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: communication-redis-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: communication-redis
+  template:
+    metadata:
+      labels:
+        app: communication-redis
+    spec:
+      containers:
+        - name: communication-redis
+          image: us.gcr.io/tiket-372908/communication-redis
+          env:
+            - name: MONGO_URL
+              value: "mongodb://communication-redis-mongo-srv:27017/communication-redis"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: communication-redis-srv
+spec:
+  selector:
+    app: communication-redis
+  ports:
+    - name: communication-redis
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

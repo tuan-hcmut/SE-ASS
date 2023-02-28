@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: MCPs-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: MCPs
+  template:
+    metadata:
+      labels:
+        app: MCPs
+    spec:
+      containers:
+        - name: MCPs
+          image: us.gcr.io/tiket-372908/MCPs
+          env:
+            - name: MONGO_URL
+              value: "mongodb://MCPs-mongo-srv:27017/MCPs"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: MCPs-srv
+spec:
+  selector:
+    app: MCPs
+  ports:
+    - name: MCPs
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

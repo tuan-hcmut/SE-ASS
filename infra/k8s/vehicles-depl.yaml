@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vehicles-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vehicles
+  template:
+    metadata:
+      labels:
+        app: vehicles
+    spec:
+      containers:
+        - name: vehicles
+          image: us.gcr.io/tiket-372908/vehicles
+          env:
+            - name: MONGO_URL
+              value: "mongodb://vehicles-mongo-srv:27017/vehicles"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vehicles-srv
+spec:
+  selector:
+    app: vehicles
+  ports:
+    - name: vehicles
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
