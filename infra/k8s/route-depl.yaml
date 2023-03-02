@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: route
-          image: us.gcr.io/tiket-372908/route
+          image: uwc/route
           env:
             - name: MONGO_URL
               value: "mongodb://route-mongo-srv:27017/route"

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: vehicles
-          image: us.gcr.io/tiket-372908/vehicles
+          image: uwc/vehicles
           env:
             - name: MONGO_URL
               value: "mongodb://vehicles-mongo-srv:27017/vehicles"

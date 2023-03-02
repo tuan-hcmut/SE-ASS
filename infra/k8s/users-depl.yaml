@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: users
-          image: us.gcr.io/tiket-372908/users
+          image: uwc/users
           env:
             - name: MONGO_URL
               value: "mongodb://users-mongo-srv:27017/users"

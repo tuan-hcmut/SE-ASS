@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: MCPs
-          image: us.gcr.io/tiket-372908/MCPs
+          image: uwc/MCPs
           env:
             - name: MONGO_URL
               value: "mongodb://MCPs-mongo-srv:27017/MCPs"
