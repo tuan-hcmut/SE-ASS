@@ -15,14 +15,14 @@ router.post(
 );
 
 router.get(
-  "/auth/google",
+  "/api/users/auth/google",
   passport.authenticate("google", {
     scope: ["profile", "email"],
   })
 );
 
-router.get("/auth/google/callback", passport.authenticate("google"), (req: Request, res: Response) => {
-  return res.redirect("http://localhost:3000");
+router.get("/api/users/auth/google/callback", passport.authenticate("google"), (req: Request, res: Response) => {
+  return res.redirect("http://uwc.net");
 });
 
 export { router as signinRouter };

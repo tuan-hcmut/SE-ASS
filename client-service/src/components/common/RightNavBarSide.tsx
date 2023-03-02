@@ -6,17 +6,16 @@ import { BsSearch } from "react-icons/bs";
 import { AiOutlinePlus, AiOutlineCheck } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 
+import AuthContext from "../../context/AuthProvider";
+
 const RightNavBarSide: React.FC = () => {
   const navigate = useNavigate();
-
-  const isLogin = () => {
-    navigate("/login");
-  };
+  const { user } = useContext(AuthContext);
 
   return (
     <>
       <div className="shrink-0 py-6 px-12 w-[350px] md:sticky top-0 xl:block hidden bg-white h-screen">
-        <div className="flex items-center justify-between cursor-pointer relative group pb-4" onClick={() => isLogin()}>
+        <div className="flex items-center justify-between cursor-pointer relative group pb-4" onClick={() => user.isLogin && navigate("/login")}>
           <div className="flex items-center gap-4">
             <img src={`logo.png`} alt="user-img" className="w-[4.8rem] h-[4.5rem] rounded-full   shrink-0" />
             <div className="flex flex-col gap-0 grow ">
@@ -24,7 +23,7 @@ const RightNavBarSide: React.FC = () => {
                 {"Anonymous"}
               </h2>
               <h3 className="text-xl text-color-dark font-light overflow-hidden text-ellipsis whitespace-nowrap w-[17rem] ">
-                {"Anonymous@gmail.com"}
+                {`${user.isLogin ? user.data.email : "Anonymous@gmail.com"}`}
               </h3>
             </div>
           </div>

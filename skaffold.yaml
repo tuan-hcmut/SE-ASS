@@ -8,7 +8,7 @@ build:
   # googleCloudBuild:
   #   projectId: tiket-372908
   artifacts:
-    - image: uwc/user
+    - image: uwc/users
       context: users-service
       docker:
         dockerfile: Dockerfile
@@ -22,16 +22,49 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: "**/*.js"
+          - src: "src/**/*.ts"
             dest: .
-    # - image: uwc/client
-    #   context: client
-    #   docker:
-    #     dockerfile: Dockerfile
-    #   sync:
-    #     manual:
-    #       - src: "**/*.js"
-    #         dest: .
+    - image: uwc/mcps
+      context: mcps-service
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    - image: uwc/rabbitmq
+      context: rabbitmq-service
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    - image: uwc/redis
+      context: redis-service
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    - image: uwc/route
+      context: route-service
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    - image: uwc/vehicles
+      context: vehicles-service
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
 manifests:
   rawYaml:
     - ./infra/k8s/*
+    - ./infra/k8s-dev/*

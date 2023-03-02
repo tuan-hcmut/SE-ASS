@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mcps-mongo-depl
+  name: rabbitmq-mongo-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mcps-mongo
+      app: rabbitmq-mongo
   template:
     metadata:
       labels:
-        app: mcps-mongo
+        app: rabbitmq-mongo
     spec:
       containers:
-        - name: mcps-mongo
+        - name: rabbitmq-mongo
           image: mongo
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mcps-mongo-srv
+  name: rabbitmq-mongo-srv
 spec:
   selector:
-    app: mcps-mongo
+    app: rabbitmq-mongo
   ports:
     - name: db
       protocol: TCP

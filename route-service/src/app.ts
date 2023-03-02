@@ -4,7 +4,7 @@ import cookieSession from "cookie-session";
 import passport from "passport";
 import { errorHandler, NotFoundError } from "@ltt-first-package/common";
 
-const keys = require("./config/keys");
+require("./services/passport");
 
 const app = express();
 
@@ -15,19 +15,14 @@ const app = express();
 
 app.set("trust proxy", true);
 app.use(express.json({ limit: "10kb" }));
-// app.use(
-//   cookieSession({
-//     signed: false,
-//     secure: process.env.NODE_ENV !== "test",
-//   })
-// );
-
 app.use(
   cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.cookieKey],
+    signed: false,
+    secure: process.env.NODE_ENV !== "test",
+    keys: ["123123123"],
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 

@@ -7,11 +7,13 @@ import { AiOutlineMail } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 import { BsGithub } from "react-icons/bs";
+import AuthContext from "../context/AuthProvider";
 
 import { Link, useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   const [logInData, setLogInData] = useState({
     email: "",
@@ -40,9 +42,9 @@ const Login: React.FC = () => {
 
               <div className="flex gap-10">
                 <div className="p-6 bg-white rounded-full cursor-pointer ">
-                  <Link to={"http://localhost:5000/auth/google"}>
+                  <a href={"http://uwc.net/api/users/auth/google"}>
                     <FcGoogle className="text-4xl" />
-                  </Link>
+                  </a>
                 </div>
                 <div
                   onClick={() => {

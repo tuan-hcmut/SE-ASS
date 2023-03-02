@@ -14,7 +14,7 @@ import { BsFillBookmarkCheckFill } from "react-icons/bs";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { MdOutlineLogin } from "react-icons/md";
 import { FiSettings } from "react-icons/fi";
-// import AuthContext from "../../context/AuthProvider";
+import AuthContext from "../../context/AuthProvider";
 
 interface active {
   isActive: boolean;
@@ -22,7 +22,8 @@ interface active {
 
 const LeftNavBarSide: React.FC<active> = ({ isActive }) => {
   const location = useLocation();
-  // const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+
   return (
     <>
       <ToastContainer className={"!text-2xl !font-semibold !text-white"} />
@@ -74,14 +75,9 @@ const LeftNavBarSide: React.FC<active> = ({ isActive }) => {
         <h2 className="text-xl text-black mt-9">GENERAL</h2>
 
         <div className="flex-col-icons">
-          <Link
-            to={`${"/login"}`}
-            // to={`${user !== null ? "/logout" : "/login"}`}
-            className="flex-icons"
-          >
+          <Link to={`${user.isLogin ? "/logout" : "/login"}`} className="flex-icons">
             <MdOutlineLogin className="text-3xl" />
-            {/* {<h3>{user !== null ? "Logout" : "Login"}</h3>} */}
-            {<h3>{"Login"}</h3>}
+            {<h3>{user.isLogin ? "Logout" : "Login"}</h3>}
           </Link>
 
           <div

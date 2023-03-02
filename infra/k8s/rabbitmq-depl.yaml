@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: rabbitmq
-          image: us.gcr.io/tiket-372908/rabbitmq
+          image: uwc/rabbitmq
           env:
             - name: MONGO_URL
               value: "mongodb://rabbitmq-mongo-srv:27017/rabbitmq"
