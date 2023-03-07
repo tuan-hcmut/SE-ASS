@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: uwc/client
+          image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc/client:lastest
 ---
 apiVersion: v1
 kind: Service

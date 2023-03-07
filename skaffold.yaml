@@ -1,14 +1,14 @@
 apiVersion: skaffold/v3
 kind: Config
 metadata:
-  name: uwc
+  name: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc
 build:
   # local:
   #   push: false
   # googleCloudBuild:
   #   projectId: tiket-372908
   artifacts:
-    - image: uwc/users
+    - image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:users
       context: users-service
       docker:
         dockerfile: Dockerfile
@@ -16,7 +16,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: uwc/client
+    - image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:client
       context: client-service
       docker:
         dockerfile: Dockerfile
@@ -24,7 +24,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: uwc/mcps
+    - image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:mcps
       context: mcps-service
       docker:
         dockerfile: Dockerfile
@@ -32,7 +32,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: uwc/rabbitmq
+    - image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:rabbitmq
       context: rabbitmq-service
       docker:
         dockerfile: Dockerfile
@@ -40,7 +40,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: uwc/redis
+    - image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:redis
       context: redis-service
       docker:
         dockerfile: Dockerfile
@@ -48,7 +48,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: uwc/route
+    - image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:route
       context: route-service
       docker:
         dockerfile: Dockerfile
@@ -56,7 +56,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: uwc/vehicles
+    - image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:vehicles
       context: vehicles-service
       docker:
         dockerfile: Dockerfile
