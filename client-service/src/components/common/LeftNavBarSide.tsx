@@ -46,7 +46,7 @@ const LeftNavBarSide: React.FC<active> = ({ isActive }) => {
 
           <Link to={"/discovery"} className={`flex-icons relative ${location.pathname === "/discovery" && "  !font-semibold !text-black "} `}>
             <FaRegCompass className="text-3xl" />
-            <h3>Hello</h3>
+            <h3>Discovery</h3>
           </Link>
 
           <Link to={"/search"} className={`flex-icons relative ${location.pathname === "/search" && "  !font-semibold !text-black "} `}>
