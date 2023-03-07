@@ -27,5 +27,5 @@ jobs:
           REPOSITORY: uwc
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
-          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+          docker build -t 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:client .
+          docker push 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:client
