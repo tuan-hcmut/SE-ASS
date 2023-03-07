@@ -2,8 +2,7 @@ name: deploy-mcps
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
     paths:
       - "mcps-service/**"
 

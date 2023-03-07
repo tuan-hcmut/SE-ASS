@@ -2,8 +2,7 @@ name: deploy-user
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
     paths:
       - "users-service/**"
 
