@@ -10,6 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - run: cd vehicles-service
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -26,5 +27,5 @@ jobs:
           REPOSITORY: uwc
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          cd vehicles-service && docker build -t 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:vehicles .
+          docker build -t 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:vehicles .
           docker push 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:vehicles
