@@ -13,7 +13,7 @@ jobs:
       - name: Install kubectl
         uses: azure/setup-kubectl@v3
         with:
-          version: "<version>" # default is latest stable
+          version: "v.21.3" # default is latest stable
         id: install
       - name: Deploy docker image from ECR to EKS
         run: kubectl apply -f infra/k8s/k8s-prod
