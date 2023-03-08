@@ -4,7 +4,7 @@ on:
   push:
     branches: ["main"]
     paths:
-      - "infra/**"
+      - "infra/k8s-prod/**"
 
 jobs:
   build:
