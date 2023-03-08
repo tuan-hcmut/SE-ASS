@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcps-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mcps
+  template:
+    metadata:
+      labels:
+        app: mcps
+    spec:
+      containers:
+        - name: mcps
+          image: uwc/mcps
+          env:
+            - name: MONGO_URL
+              value: "mongodb://mcps-mongo-srv:27017/mcps"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+            - name: GOOGLE_ID
+              valueFrom:
+                secretKeyRef:
+                  name: google-id-secret
+                  key: GOOGLE_ID
+            - name: GOOGLE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: google-secret
+                  key: GOOGLE_SECRET
+            - name: COOKIE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cookie-key-secret
+                  key: COOKIE_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcps-srv
+spec:
+  selector:
+    app: mcps
+  ports:
+    - name: mcps
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

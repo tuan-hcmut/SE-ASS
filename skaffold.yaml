@@ -1,14 +1,14 @@
 apiVersion: skaffold/v3
 kind: Config
 metadata:
-  name: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc
+  name: uwc
 build:
   # local:
   #   push: false
   # googleCloudBuild:
   #   projectId: tiket-372908
   artifacts:
-    - image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:users
+    - image: uwc/users
       context: users-service
       docker:
         dockerfile: Dockerfile
@@ -16,7 +16,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:client
+    - image: uwc/client
       context: client-service
       docker:
         dockerfile: Dockerfile
@@ -24,7 +24,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:mcps
+    - image: uwc/mcps
       context: mcps-service
       docker:
         dockerfile: Dockerfile
@@ -32,7 +32,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:rabbitmq
+    - image: uwc/rabbitmq
       context: rabbitmq-service
       docker:
         dockerfile: Dockerfile
@@ -40,7 +40,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:redis
+    - image: uwc/redis
       context: redis-service
       docker:
         dockerfile: Dockerfile
@@ -48,7 +48,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:route
+    - image: uwc/route
       context: route-service
       docker:
         dockerfile: Dockerfile
@@ -56,7 +56,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:vehicles
+    - image: uwc/vehicles
       context: vehicles-service
       docker:
         dockerfile: Dockerfile
@@ -66,5 +66,5 @@ build:
             dest: .
 manifests:
   rawYaml:
-    - ./infra/k8s/*
-    - ./infra/k8s-dev/*
+    # - ./infra/k8s/*
+    - ./infra/k8s/k8s-dev/*

@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vehicles-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vehicles
+  template:
+    metadata:
+      labels:
+        app: vehicles
+    spec:
+      containers:
+        - name: vehicles
+          image: uwc/vehicles
+          env:
+            - name: MONGO_URL
+              value: "mongodb://vehicles-mongo-srv:27017/vehicles"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+            - name: GOOGLE_ID
+              valueFrom:
+                secretKeyRef:
+                  name: google-id-secret
+                  key: GOOGLE_ID
+            - name: GOOGLE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: google-secret
+                  key: GOOGLE_SECRET
+            - name: COOKIE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cookie-key-secret
+                  key: COOKIE_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vehicles-srv
+spec:
+  selector:
+    app: vehicles
+  ports:
+    - name: vehicles
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
