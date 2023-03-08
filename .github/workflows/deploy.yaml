@@ -7,11 +7,12 @@ on:
       - "infra/k8s/k8s-prod/**"
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Install kubectl
         uses: azure/setup-kubectl@v3
         with:
