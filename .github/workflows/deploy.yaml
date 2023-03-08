@@ -41,6 +41,6 @@ jobs:
       - name: Apply Kubernetes manifests
         uses: steebchen/kubectl@master
         with:
-          command: apply
+          command: apply -f
           manifests: |
             infra/k8s/k8s-prod
