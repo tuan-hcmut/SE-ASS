@@ -51,7 +51,7 @@ const LeftNavBarSide: React.FC<active> = ({ isActive }) => {
 
           <Link to={"/search"} className={`flex-icons relative ${location.pathname === "/search" && "  !font-semibold !text-black "} `}>
             <BsSearch className="text-3xl" />
-            <h3>Search</h3>
+            <h3>Search.</h3>
             <div className={`${location.pathname === "/search" && "w-[3.5px] h-[120%] bg-black absolute right-0 rounded-l-xl"}`}></div>
           </Link>
         </div>
