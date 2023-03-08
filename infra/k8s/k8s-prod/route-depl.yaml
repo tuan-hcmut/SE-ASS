@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: route-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: route
+  template:
+    metadata:
+      labels:
+        app: route
+    spec:
+      containers:
+        - name: route
+          image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:route
+          env:
+            - name: MONGO_URL
+              value: "mongodb://route-mongo-srv:27017/route"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+            - name: GOOGLE_ID
+              valueFrom:
+                secretKeyRef:
+                  name: google-id-secret
+                  key: GOOGLE_ID
+            - name: GOOGLE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: google-secret
+                  key: GOOGLE_SECRET
+            - name: COOKIE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cookie-key-secret
+                  key: COOKIE_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: route-srv
+spec:
+  selector:
+    app: route
+  ports:
+    - name: route
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

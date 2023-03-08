@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: mcps
-          image: uwc/mcps
+          image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:mcps
           env:
             - name: MONGO_URL
               value: "mongodb://mcps-mongo-srv:27017/mcps"
@@ -23,6 +23,21 @@ spec:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
+            - name: GOOGLE_ID
+              valueFrom:
+                secretKeyRef:
+                  name: google-id-secret
+                  key: GOOGLE_ID
+            - name: GOOGLE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: google-secret
+                  key: GOOGLE_SECRET
+            - name: COOKIE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cookie-key-secret
+                  key: COOKIE_KEY
 ---
 apiVersion: v1
 kind: Service

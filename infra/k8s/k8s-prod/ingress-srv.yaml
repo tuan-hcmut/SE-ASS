@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: uwcv2.site
+      http:
+        paths:
+          - path: /api/users/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: users-srv
+                port:
+                  number: 3000
+          - path: /api/mcps/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: mcps-srv
+                port:
+                  number: 3000
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: client-srv
+                port:
+                  number: 3000
