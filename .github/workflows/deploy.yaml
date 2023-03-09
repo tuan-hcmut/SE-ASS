@@ -55,4 +55,4 @@ jobs:
         run: aws eks update-kubeconfig --name uwc --region ap-southeast-1
 
       - name: Deploy image to Amazon EKS
-        run: kubectl rollout restart infra/k8s/k8s-prod
+        run: kubectl apply -f infra/k8s/k8s-prod
