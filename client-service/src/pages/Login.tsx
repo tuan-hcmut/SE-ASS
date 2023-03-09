@@ -42,7 +42,7 @@ const Login: React.FC = () => {
 
               <div className="flex gap-10">
                 <div className="p-6 bg-white rounded-full cursor-pointer ">
-                  <a href={"http://uwc.net/api/users/auth/google"}>
+                  <a href={`${process.env.REACT_APP_BASE_URL}/api/users/auth/google`}>
                     <FcGoogle className="text-4xl" />
                   </a>
                 </div>
