@@ -42,7 +42,7 @@ const Login: React.FC = () => {
 
               <div className="flex gap-10">
                 <div className="p-6 bg-white rounded-full cursor-pointer ">
-                  <a href={"http://uwc.net/api/users/auth/google"}>
+                  <a href={`${process.env.REACT_APP_BASE_URL}/api/users/auth/google`}>
                     <FcGoogle className="text-4xl" />
                   </a>
                 </div>
@@ -105,7 +105,7 @@ const Login: React.FC = () => {
                     id="password"
                     required
                     className="md:w-[40rem] w-[30rem] py-6 pl-20 rounded-lg bg-color-filter bg-opacity-80"
-                    placeholder="••••••••"
+                    placeholder="•••••••"
                   />
                   <BiLockAlt className="absolute top-[50%] left-0 !text-4xl translate-y-[-50%] text-white ml-4" />
                 </div>
