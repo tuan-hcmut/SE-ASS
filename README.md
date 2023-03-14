@@ -10,6 +10,17 @@
  * NodeJS (ExpressJS), Database (Mysql, mongoDB, redis), Authentication with JWT, Login with google using passortJS, websocket(socketIO).
  * Here is sample about microservice architecture:
 <img width="704" alt="samplemicro" src="https://user-images.githubusercontent.com/85759831/224264272-573eda04-3eb6-4614-9b6d-04fbd60c1637.PNG">.
+## Amazon web service
+###  Amazon Elastic Container Registry (ECR).
+### Elastic Kubernetes Service (Amazon EKS).
+### EC2 instances.
+### Route 53.
+### S3 bucket.
+### AWS Identity and Access Management (IAM).
+## Container and Container Orchestration
+ * Docker and kubenetes.
+## CI/CD tools
+ * Github action.
 ## Setup environment:
 * Install git: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 * Clone source: git clone https://github.com/tuan-hcmut/SE-ASS.git
