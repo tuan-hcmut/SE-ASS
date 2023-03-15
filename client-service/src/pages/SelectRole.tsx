@@ -16,7 +16,7 @@ const SelectRole: React.FC<Props> = ({ loading, setLoading }) => {
   return (
     <>
       <div className="sky-bg w-screen h-screen">
-        <div>hell</div>
+        <div>hello</div>
         <div className="sun"></div>
         <div className="mercury"></div>
         <div className="venus"></div>
