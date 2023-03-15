@@ -15,7 +15,7 @@ spec:
       containers:
         - name: redis
           image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:redis
-          # imagePullPolicy: Always
+          imagePullPolicy: Always
           env:
             - name: REDIS_HOST
               value: expiration-redis-srv
