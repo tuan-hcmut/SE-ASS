@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     paths:
       - "mcps-service/**"
+      - "MCPs-service/**"
 
 jobs:
   build:
