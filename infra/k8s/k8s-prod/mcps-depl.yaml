@@ -15,7 +15,7 @@ spec:
       containers:
         - name: mcps
           image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:mcps
-          imagePullPolicy: Always
+          # imagePullPolicy: Always
           env:
             - name: MONGO_URL
               value: "mongodb://mcps-mongo-srv:27017/mcps"
