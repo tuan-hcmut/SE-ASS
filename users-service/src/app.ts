@@ -11,8 +11,10 @@ const app = express();
 
 import { currentuserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
-// import { signoutRouter } from "./routes/signout";
-// import { signupRouter } from "./routes/signup";
+import { allUserRouter } from "./routes/all-users";
+import { signoutRouter } from "./routes/signout";
+import { signupRouter } from "./routes/signup";
+import { updateUserRouter } from "./routes/update-user";
 
 app.set("trust proxy", true);
 app.use(express.json({ limit: "10kb" }));
@@ -34,8 +36,10 @@ app.use(passport.session());
 
 app.use(currentuserRouter);
 app.use(signinRouter);
-// app.use(signoutRouter);
-// app.use(signupRouter);
+app.use(allUserRouter);
+app.use(signoutRouter);
+app.use(signupRouter);
+app.use(updateUserRouter);
 
 app.all("*", async () => {
   // if we use async then this func will return a promise, so we have use next() and attach error in this in order to move to another middleware

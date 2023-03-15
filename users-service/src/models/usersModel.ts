@@ -4,12 +4,16 @@ import { Password } from "../services/password";
 interface UserAttribute {
   email: string;
   password: string;
+  fullName: string;
+  photo?: string;
   role?: string;
 }
 
 interface UserDoc extends mongoose.Document {
   email: string;
   password: string;
+  fullName: string;
+  photo?: string;
   role: string;
 }
 
@@ -23,10 +27,19 @@ const userSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
+    fullName: {
+      type: String,
+      require: true,
+    },
 
     password: {
       type: String,
       require: true,
+    },
+    photo: {
+      type: String,
+      require: true,
+      default: "640f3f4a676e2fa7c7bfb3c0/user-default/logo.png",
     },
 
     role: {

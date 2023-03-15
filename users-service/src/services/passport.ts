@@ -42,6 +42,7 @@ passport.use(
         const user = await User.build({
           email: email!,
           password: profile.id,
+          fullName: profile.displayName,
         }).save();
 
         //// authentication success
