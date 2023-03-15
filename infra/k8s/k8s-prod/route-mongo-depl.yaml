@@ -15,7 +15,7 @@ spec:
       containers:
         - name: route-mongo
           image: mongo
-          imagePullPolicy: Always
+          # imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service

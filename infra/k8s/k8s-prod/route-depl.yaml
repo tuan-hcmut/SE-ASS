@@ -15,7 +15,7 @@ spec:
       containers:
         - name: route
           image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:route
-          imagePullPolicy: Always
+          # imagePullPolicy: Always
           env:
             - name: MONGO_URL
               value: "mongodb://route-mongo-srv:27017/route"

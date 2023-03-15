@@ -15,7 +15,7 @@ spec:
       containers:
         - name: redis-pod
           image: redis
-          imagePullPolicy: Always
+          # imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
