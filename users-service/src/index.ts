@@ -7,6 +7,8 @@ const connectDB = async () => {
   if (!process.env.GOOGLE_ID) throw new Error("GOOGLE_ID must be defined!!!");
   if (!process.env.GOOGLE_SECRET) throw new Error("GOOGLE_SECRET must be defined!!!");
   if (!process.env.COOKIE_KEY) throw new Error("COOKIE_KEY must be defined!!!");
+  if (!process.env.AWS_ACCESS_KEY) throw new Error("AWS_ACCESS_KEY must be defined!!!");
+  if (!process.env.AWS_SECRET_KEY) throw new Error("AWS_SECRET_KEY must be defined!!!");
 
   try {
     await mongoose.connect(process.env.MONGO_URL, {

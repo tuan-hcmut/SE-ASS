@@ -22,7 +22,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: "src/**/*.ts"
+          - src: "**/*.ts"
             dest: .
     - image: uwc/mcps
       context: mcps-service

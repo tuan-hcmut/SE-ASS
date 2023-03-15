@@ -15,6 +15,7 @@ const AuthContext = createContext<ContextProps>({
 
 export const AuthProvider: React.FC<GeneralProps> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({
+    inProcess: false,
     isLogin: false,
     data: {},
   });
@@ -22,14 +23,14 @@ export const AuthProvider: React.FC<GeneralProps> = ({ children }) => {
   useEffect(() => {
     const getUser = async () => {
       const user = await isLogin();
-      console.log(user.currentUser);
-      user
+      user.currentUser
         ? setCurrentUser({
             ...currentUser,
+            inProcess: true,
             isLogin: true,
             data: { ...user.currentUser },
           })
-        : setCurrentUser({ ...currentUser, isLogin: false, data: {} });
+        : setCurrentUser({ ...currentUser, inProcess: true, isLogin: false, data: {} });
     };
 
     getUser();
@@ -41,7 +42,7 @@ export const AuthProvider: React.FC<GeneralProps> = ({ children }) => {
         user: currentUser,
       }}
     >
-      {children}
+      {currentUser.inProcess && children}
     </AuthContext.Provider>
   );
 };

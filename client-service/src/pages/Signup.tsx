@@ -8,23 +8,26 @@ import validator from "validator";
 import { AiOutlineMail, AiOutlineUser } from "react-icons/ai";
 import { BiLockAlt } from "react-icons/bi";
 
-const Signup: React.FC = () => {
+import AuthContext from "../context/AuthProvider";
+import { signUp } from "../services/auth";
+import Loading from "../components/common/Loading";
+
+interface Props {
+  loading: boolean;
+  setLoading: any;
+}
+const Signup: React.FC<Props> = ({ loading, setLoading }) => {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+
   const [signUpData, setSignUpData] = useState({
-    firstName: "",
-    lastName: "",
+    fullName: "",
     email: "",
     password: "",
     passwordConfirm: "",
   });
 
-  // useEffect(() => {
-  //   const isUser = () => {
-  //     if (user !== null) navigate("/");
-  //   };
-
-  //   isUser();
-  // });
+  if (user.isLogin) window.location.href = "/";
 
   const setMessage = (type: string, message: string) => {
     if (type === "err") toast.error(message);
@@ -37,30 +40,35 @@ const Signup: React.FC = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
-    if (validator.isEmail(signUpData.email)) {
-      if (signUpData.password === signUpData.passwordConfirm) {
-        // const res = await signUp(signUpData);
-
-        // if (res.status === 200) window.location.href = "/";
-        // if (res.status === 400) setMessage("err", res.data.message);
-        setSignUpData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          password: "",
-          passwordConfirm: "",
-        });
+    setLoading(true);
+    try {
+      if (validator.isEmail(signUpData.email)) {
+        if (signUpData.password === signUpData.passwordConfirm) {
+          // console.log(signUpData);
+          const res = await signUp(signUpData);
+          res.status === 201 ? (window.location.href = "/") : setMessage("err", res.message);
+          setSignUpData({
+            fullName: "",
+            email: "",
+            password: "",
+            passwordConfirm: "",
+          });
+        } else {
+          setMessage("err", "Password and password Confirm are not the same!!!");
+        }
       } else {
-        setMessage("err", "Password and password Confirm are not the same!!!");
+        setMessage("err", "Invalid Email!!!");
       }
-    } else {
-      setMessage("err", "Invalid Email!!!");
+    } catch (err) {
+      console.log(err);
     }
+
+    setLoading(false);
   };
 
   return (
     <>
+      {loading && <Loading />}
       <title>Sign Up</title>
       <ToastContainer className={"!text-2xl !font-semibold !text-white"} />
       <div className="sky-bg w-screen h-screen">
@@ -75,40 +83,19 @@ const Signup: React.FC = () => {
               <div className="flex gap-8">
                 <div className="flex flex-col gap-5">
                   <label className="font-semibold text-xl text-white" htmlFor="fullName">
-                    First Name
+                    Full Name
                   </label>
                   <div className="relative text-2xl font-normal">
                     <input
                       type={"text"}
-                      name="firstName"
-                      value={signUpData.firstName}
+                      name="fullName"
+                      value={signUpData.fullName}
                       minLength={1}
                       maxLength={40}
                       onChange={handle}
-                      id="firstName"
-                      className="md:w-[19rem] w-[15rem] py-6 pl-20 rounded-lg bg-color-filter bg-opacity-80"
-                      placeholder="First name..."
-                      required
-                    />
-                    <AiOutlineUser className="absolute top-[50%] left-0 !text-4xl translate-y-[-50%] text-white ml-4" />
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-5">
-                  <label className="font-semibold text-xl text-white" htmlFor="fullName">
-                    Last Name
-                  </label>
-                  <div className="relative text-2xl font-normal">
-                    <input
-                      type={"text"}
-                      name="lastName"
-                      value={signUpData.lastName}
-                      minLength={1}
-                      maxLength={40}
-                      onChange={handle}
-                      id="lastName"
-                      className="md:w-[19rem] w-[15rem] py-6 pl-20 rounded-lg bg-color-filter bg-opacity-80"
-                      placeholder="Last Name..."
+                      id="fullName"
+                      className="md:w-[40rem] w-[32rem] py-6 pl-20 rounded-lg bg-color-filter bg-opacity-80"
+                      placeholder="your full name..."
                       required
                     />
                     <AiOutlineUser className="absolute top-[50%] left-0 !text-4xl translate-y-[-50%] text-white ml-4" />
@@ -181,6 +168,7 @@ const Signup: React.FC = () => {
             </div>
             <button
               type="submit"
+              disabled={loading}
               className="font-medium text-white text-3xl bg-blue-500 bg-opacity-70 py-4 px-10 rounded-md mt-6 hover:bg-opacity-100 transiton duration-200"
             >
               Sign Up

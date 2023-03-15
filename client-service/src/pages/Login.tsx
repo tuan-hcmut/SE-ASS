@@ -8,12 +8,19 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 import { BsGithub } from "react-icons/bs";
 import AuthContext from "../context/AuthProvider";
+import { signIn } from "../services/auth";
+import { Link } from "react-router-dom";
+import Loading from "../components/common/Loading";
 
-import { Link, useNavigate } from "react-router-dom";
+interface Props {
+  loading: boolean;
+  setLoading: any;
+}
 
-const Login: React.FC = () => {
-  const navigate = useNavigate();
+const Login: React.FC<Props> = ({ loading, setLoading }) => {
   const { user } = useContext(AuthContext);
+
+  if (user.isLogin) window.location.href = "/";
 
   const [logInData, setLogInData] = useState({
     email: "",
@@ -29,23 +36,34 @@ const Login: React.FC = () => {
     setLogInData({ ...logInData, [e.target.name]: e.target.value });
   };
 
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    const res = await signIn(logInData);
+    res.status === 200 ? (window.location.href = "/") : setMessage("err", res.message);
+    setLoading(false);
+  };
   return (
     <>
+      {loading && <Loading />}
       <title>Login</title>
       <ToastContainer className={"!text-2xl !font-semibold !text-white"} />
       <div className="sky-bg w-screen h-screen">
         <div className="flex justify-center items-center h-screen">
-          <form className="flex flex-col items-center md:w-[50rem] w-[35rem] md:h-[65rem] h-[55rem] bg-color-filter z-30 bg-opacity-50 rounded-lg p-10">
+          <form
+            className="flex flex-col items-center md:w-[50rem] w-[35rem] md:h-[65rem] h-[55rem] bg-color-filter z-30 bg-opacity-50 rounded-lg p-10"
+            onSubmit={handleSubmit}
+          >
             <h1 className=" text-blue-600 md:text-7xl text-5xl font-bold text-center">Log In</h1>
             <div className="flex flex-col gap-6 items-center my-12">
               <h3 className="font-semibold text-2xl text-white">Login with: </h3>
 
               <div className="flex gap-10">
-                <div className="p-6 bg-white rounded-full cursor-pointer ">
-                  <a href={`${process.env.REACT_APP_BASE_URL}/api/users/auth/google`}>
+                <a href={`${process.env.REACT_APP_BASE_URL}/api/users/auth/google`}>
+                  <div className="p-6 bg-white rounded-full cursor-pointer ">
                     <FcGoogle className="text-4xl" />
-                  </a>
-                </div>
+                  </div>
+                </a>
                 <div
                   onClick={() => {
                     toast.error("Login with github is updating, you can login with google instead!!");
@@ -113,6 +131,7 @@ const Login: React.FC = () => {
             </div>
             <button
               type="submit"
+              disabled={loading}
               className="font-medium text-white text-3xl bg-blue-500 bg-opacity-70 py-4 px-10 rounded-md mt-10 hover:bg-opacity-100 transiton duration-200"
             >
               Log In

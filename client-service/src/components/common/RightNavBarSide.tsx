@@ -1,26 +1,32 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { BiChevronDown, BiLogOut } from "react-icons/bi";
+import { BiChevronDown } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
-import { AiOutlinePlus, AiOutlineCheck } from "react-icons/ai";
-import { CgProfile } from "react-icons/cg";
 
 import AuthContext from "../../context/AuthProvider";
 
 const RightNavBarSide: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-
   return (
     <>
       <div className="shrink-0 py-6 px-12 w-[350px] md:sticky top-0 xl:block hidden bg-white h-screen">
-        <div className="flex items-center justify-between cursor-pointer relative group pb-4" onClick={() => user.isLogin && navigate("/login")}>
+        <div
+          className="flex items-center justify-between cursor-pointer relative group pb-4"
+          onClick={() => (!user.isLogin ? navigate("/login") : navigate("/user/userinfor"))}
+        >
           <div className="flex items-center gap-4">
-            <img src={`logo.png`} alt="user-img" className="w-[4.8rem] h-[4.5rem] rounded-full   shrink-0" />
+            <img
+              src={`https://uwc-bucket.s3.ap-southeast-1.amazonaws.com/${
+                user.data.photo ? user.data.photo : "640f3f4a676e2fa7c7bfb3c0/user-default/logo.png"
+              }`}
+              alt="user-img"
+              className="w-[4.8rem] h-[4.5rem] rounded-full   shrink-0"
+            />
             <div className="flex flex-col gap-0 grow ">
               <h2 className="text-2xl font-extrabold text-black uppercase overflow-hidden text-ellipsis whitespace-nowrap w-[17rem]">
-                {"Anonymous"}
+                {user.isLogin ? user.data.fullName : "Anonymous"}
               </h2>
               <h3 className="text-xl text-color-dark font-light overflow-hidden text-ellipsis whitespace-nowrap w-[17rem] ">
                 {`${user.isLogin ? user.data.email : "Anonymous@gmail.com"}`}
