@@ -15,7 +15,7 @@ spec:
       containers:
         - name: users
           image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:users
-          # imagePullPolicy: Always
+          imagePullPolicy: Always
           env:
             - name: MONGO_URL
               value: "mongodb://users-mongo-srv:27017/users"
