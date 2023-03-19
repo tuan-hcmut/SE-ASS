@@ -8,7 +8,6 @@ import validator from "validator";
 import { AiOutlineMail, AiOutlineUser } from "react-icons/ai";
 import { BiLockAlt } from "react-icons/bi";
 
-import AuthContext from "../context/AuthProvider";
 import { signUp } from "../services/auth";
 import Loading from "../components/common/Loading";
 
@@ -17,17 +16,12 @@ interface Props {
   setLoading: any;
 }
 const Signup: React.FC<Props> = ({ loading, setLoading }) => {
-  const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
-
   const [signUpData, setSignUpData] = useState({
     fullName: "",
     email: "",
     password: "",
     passwordConfirm: "",
   });
-
-  if (user.isLogin) window.location.href = "/";
 
   const setMessage = (type: string, message: string) => {
     if (type === "err") toast.error(message);
@@ -169,7 +163,7 @@ const Signup: React.FC<Props> = ({ loading, setLoading }) => {
             <button
               type="submit"
               disabled={loading}
-              className="font-medium text-white text-3xl bg-blue-500 bg-opacity-70 py-4 px-10 rounded-md mt-6 hover:bg-opacity-100 transiton duration-200"
+              className="font-medium text-white text-3xl bg-color-blue hover:bg-color-blue-darker py-4 px-10 rounded mt-6  transiton duration-200"
             >
               Sign Up
             </button>

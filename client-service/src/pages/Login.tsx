@@ -7,7 +7,6 @@ import { AiOutlineMail } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 import { BsGithub } from "react-icons/bs";
-import AuthContext from "../context/AuthProvider";
 import { signIn } from "../services/auth";
 import { Link } from "react-router-dom";
 import Loading from "../components/common/Loading";
@@ -18,10 +17,6 @@ interface Props {
 }
 
 const Login: React.FC<Props> = ({ loading, setLoading }) => {
-  const { user } = useContext(AuthContext);
-
-  if (user.isLogin) window.location.href = "/";
-
   const [logInData, setLogInData] = useState({
     email: "",
     password: "",
@@ -132,7 +127,7 @@ const Login: React.FC<Props> = ({ loading, setLoading }) => {
             <button
               type="submit"
               disabled={loading}
-              className="font-medium text-white text-3xl bg-blue-500 bg-opacity-70 py-4 px-10 rounded-md mt-10 hover:bg-opacity-100 transiton duration-200"
+              className="font-medium text-white text-3xl bg-color-blue hover:bg-color-blue-darker py-4 px-10 rounded mt-10 transiton duration-200"
             >
               Log In
             </button>

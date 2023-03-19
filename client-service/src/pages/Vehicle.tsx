@@ -4,12 +4,10 @@ import NavBarForMob from "../components/common/NavBarForMob";
 import LeftNavBarSide from "../components/common/LeftNavBarSide";
 import RightNavBarSide from "../components/common/RightNavBarSide";
 import ScrollButton from "../components/common/ScrollButton";
-import BackofficerHomeBody from "../components/backofficer/BackofficerHomeBody";
-import AuthContext from "../context/AuthProvider";
+import VehiclesInfor from "../components/common/VehiclesInfor";
 
-const Home: React.FC = () => {
+const Vehicle: React.FC = () => {
   const [isActive, setIsActive] = useState(false);
-  const { user } = useContext(AuthContext);
 
   return (
     <>
@@ -20,7 +18,7 @@ const Home: React.FC = () => {
           <LeftNavBarSide isActive={isActive} />
           {/*        middle home           */}
           <div className=" bg-color-grey-light grow w-0">
-            <BackofficerHomeBody />
+            <VehiclesInfor />
           </div>
 
           {/*        RightNavBarSide         */}
@@ -32,4 +30,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Vehicle;

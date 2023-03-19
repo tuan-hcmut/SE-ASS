@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { isLogin } from "../services/auth";
+import { useNavigate } from "react-router-dom";
 
 interface GeneralProps {
   children: JSX.Element[] | JSX.Element;
@@ -14,6 +15,7 @@ const AuthContext = createContext<ContextProps>({
 });
 
 export const AuthProvider: React.FC<GeneralProps> = ({ children }) => {
+  const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState({
     inProcess: false,
     isLogin: false,
@@ -31,6 +33,10 @@ export const AuthProvider: React.FC<GeneralProps> = ({ children }) => {
             data: { ...user.currentUser },
           })
         : setCurrentUser({ ...currentUser, inProcess: true, isLogin: false, data: {} });
+
+      console.log(user);
+      if (!user.currentUser) navigate("login");
+      else if (!user.currentUser.role) navigate("user/selectrole");
     };
 
     getUser();

@@ -59,6 +59,20 @@ body {
   }
 }
 
+.scrollbar {
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #f8f8fc;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #787878;
+  }
+}
+
 .text-resize {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -70,7 +84,7 @@ body {
 }
 
 .bg-text-color {
-  background-image: linear-gradient(to right bottom, #a7a5ff, #2568ef);
+  background-image: linear-gradient(to right bottom, #3e3c97, #2568ef);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

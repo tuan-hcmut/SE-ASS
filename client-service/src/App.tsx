@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import Logout from "./pages/Logout";
 import UserInfor from "./pages/UserInfor";
 import SelectRole from "./pages/SelectRole";
+import Vehicle from "./pages/Vehicle";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -20,6 +21,7 @@ function App() {
         <Route path="logout" element={<Logout />} />
         <Route path="user/userinfor" element={<UserInfor loading={loading} setLoading={setLoading} />} />
         <Route path="user/selectrole" element={<SelectRole loading={loading} setLoading={setLoading} />} />
+        <Route path="vehicles/infor" element={<Vehicle />} />
       </Routes>
     </div>
   );

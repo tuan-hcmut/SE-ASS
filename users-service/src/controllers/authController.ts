@@ -123,3 +123,24 @@ exports.updateUserInfor = async (req: Request, res: Response) => {
 
   return res.status(201).send(user);
 };
+
+exports.updateUserRole = async (req: Request, res: Response) => {
+  const { role } = req.body;
+
+  const user = await User.findByIdAndUpdate(
+    { _id: req.currentUser!.id },
+    {
+      $set: {
+        role,
+      },
+    },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+  const token = rendertoken(user);
+  req.session = { token: token };
+
+  return res.status(201).send(user);
+};

@@ -18,7 +18,7 @@ spec:
           # imagePullPolicy: Always
           env:
             - name: REDIS_HOST
-              value: expiration-redis-srv
+              value: redis-pod-srv
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
@@ -39,3 +39,16 @@ spec:
                 secretKeyRef:
                   name: cookie-key-secret
                   key: COOKIE_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-srv
+spec:
+  selector:
+    app: redis
+  ports:
+    - name: redis
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
