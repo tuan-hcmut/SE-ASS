@@ -8,14 +8,13 @@ require("./services/passport");
 
 const app = express();
 
-app.set("trust proxy", true);
-import { viewMCPsRouter } from "./routes/viewMPCs";
+// import { currentuserRouter } from "./routes/current-user";
 // import { signinRouter } from "./routes/signin";
 // import { signoutRouter } from "./routes/signout";
 // import { signupRouter } from "./routes/signup";
 
+app.set("trust proxy", true);
 app.use(express.json({ limit: "10kb" }));
-
 app.use(
   cookieSession({
     signed: false,
@@ -23,10 +22,11 @@ app.use(
     keys: ["123123123"],
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(viewMCPsRouter);
+// app.use(currentuserRouter);
 // app.use(signinRouter);
 // app.use(signoutRouter);
 // app.use(signupRouter);

@@ -67,7 +67,7 @@ exports.signUp = async (req: Request, res: Response) => {
 };
 
 exports.allUser = async (req: Request, res: Response) => {
-  const users = await User.find({});
+  const users = await User.find();
   return res.status(200).send(users);
 };
 

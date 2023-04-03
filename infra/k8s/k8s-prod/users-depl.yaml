@@ -15,7 +15,7 @@ spec:
       containers:
         - name: users
           image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:users
-          # imagePullPolicy: Always
+          imagePullPolicy: Always
           env:
             - name: MONGO_URL
               value: "mongodb://users-mongo-srv:27017/users"
@@ -39,6 +39,16 @@ spec:
                 secretKeyRef:
                   name: cookie-key-secret
                   key: COOKIE_KEY
+            - name: AWS_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-access-key-secret
+                  key: AWS_ACCESS_KEY
+            - name: AWS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-recret-key-secret
+                  key: AWS_SECRET_KEY
 ---
 apiVersion: v1
 kind: Service
