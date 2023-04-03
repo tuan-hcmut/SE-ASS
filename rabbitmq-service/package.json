@@ -8,6 +8,8 @@
   "license": "MIT",
   "dependencies": {
     "@ltt-first-package/common": "^1.0.9",
+    "@types/amqplib": "^0.10.1",
+    "amqplib": "^0.10.3",
     "express": "^4.18.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.9.5"

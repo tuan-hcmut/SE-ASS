@@ -4,10 +4,14 @@ metadata:
   name: ingress-service
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, PUT, POST, DELETE, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
 spec:
   ingressClassName: nginx
   rules:
-    - host: uwc.net
+    - host: uwcv2.net
       http:
         paths:
           - path: /api/users/?(.*)
@@ -22,6 +26,20 @@ spec:
             backend:
               service:
                 name: mcps-srv
+                port:
+                  number: 3000
+          - path: /api/communication/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: communication-srv
+                port:
+                  number: 3000
+          - path: /api/vehicles/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: vehicles-srv
                 port:
                   number: 3000
           - path: /?(.*)

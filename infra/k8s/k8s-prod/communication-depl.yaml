@@ -1,23 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis-depl
+  name: communication-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: redis
+      app: communication
   template:
     metadata:
       labels:
-        app: redis
+        app: communication
     spec:
       containers:
-        - name: redis
-          image: uwc/redis
+        - name: communication
+          image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:communication
+          # imagePullPolicy: Always
           env:
+            - name: MONGO_URL
+              value: "mongodb://communication-mongo-srv:27017/communication"
             - name: REDIS_HOST
-              value: expiration-redis-srv
+              value: redis-pod-srv
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
@@ -38,3 +41,16 @@ spec:
                 secretKeyRef:
                   name: cookie-key-secret
                   key: COOKIE_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: communication-srv
+spec:
+  selector:
+    app: communication
+  ports:
+    - name: communication
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

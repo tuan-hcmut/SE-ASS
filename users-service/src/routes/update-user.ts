@@ -17,4 +17,12 @@ router.post(
   authController.updateUserInfor
 );
 
+router.post(
+  "/api/users/updateUserRole",
+  // [body("role").trim().isLength({ min: 1, max: 40 }).withMessage("role not valid!!")],
+  // validateRequest,
+  isLogin,
+  requireAuth,
+  authController.updateUserRole
+);
 export { router as updateUserRouter };

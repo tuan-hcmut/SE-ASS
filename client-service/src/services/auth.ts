@@ -117,3 +117,26 @@ export const updateUserInfor = async (data: dataUpdateUser) => {
     };
   }
 };
+
+export const updateUserRole = async (data: any) => {
+  try {
+    const res = await axios({
+      method: "POST",
+      url: `${process.env.REACT_APP_BASE_URL}/api/users/updateUserRole`,
+      data: {
+        role: data,
+      },
+    });
+
+    return {
+      status: res.status,
+      data: res.data,
+      message: "success",
+    };
+  } catch (err: any) {
+    return {
+      status: err.response.status,
+      message: err.response.data.errors[0].message,
+    };
+  }
+};

@@ -44,8 +44,8 @@ const userSchema = new mongoose.Schema(
 
     role: {
       type: String,
-      enum: ["backOfficer", "janitor", "collector"],
-      default: "collector",
+      enum: ["BackOfficer", "Janitor", "Collector", null],
+      default: null,
     },
 
     vehicle: {

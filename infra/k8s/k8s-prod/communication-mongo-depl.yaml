@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mcps-mongo-depl
+  name: communication-mongo-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mcps-mongo
+      app: communication-mongo
   template:
     metadata:
       labels:
-        app: mcps-mongo
+        app: communication-mongo
     spec:
       containers:
-        - name: mcps-mongo
+        - name: communication-mongo
           image: mongo
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mcps-mongo-srv
+  name: communication-mongo-srv
 spec:
   selector:
-    app: mcps-mongo
+    app: communication-mongo
   ports:
     - name: db
       protocol: TCP

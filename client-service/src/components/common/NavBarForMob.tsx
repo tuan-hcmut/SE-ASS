@@ -1,7 +1,7 @@
 import React from "react";
 
 const NavBarForMob: React.FC = () => {
-  return <>...</>;
+  return <></>;
 };
 
 export default NavBarForMob;

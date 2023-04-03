@@ -30,7 +30,7 @@ body {
   font-weight: 400;
   line-height: 1;
   box-sizing: border-box;
-  @apply bg-white text-color-grey-dark font-inter overflow-x-hidden md:overflow-x-visible;
+  @apply bg-white text-white font-inter overflow-x-hidden md:overflow-x-visible;
 }
 
 .flex-icons {
@@ -39,6 +39,10 @@ body {
 
 .flex-col-icons {
   @apply flex flex-col gap-9 mt-10 ml-4;
+}
+
+.bg-linear-color {
+  background: linear-gradient(to right, rgb(20, 30, 48), rgb(36, 59, 85));
 }
 
 .swiper-button-next,
@@ -59,6 +63,48 @@ body {
   }
 }
 
+.scrollbar {
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #f8f8fc;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #787878;
+  }
+}
+
+.scrollbar-boxchat {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: rgb(36, 59, 85);
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #318fdc;
+  }
+}
+
+.scrollbarv2 {
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #f8f8fc;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #787878;
+  }
+}
+
 .text-resize {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -70,7 +116,7 @@ body {
 }
 
 .bg-text-color {
-  background-image: linear-gradient(to right bottom, #a7a5ff, #2568ef);
+  background-image: linear-gradient(to right bottom, #3e3c97, #2568ef);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -138,5 +184,25 @@ body {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.box-shadow-custom {
+  box-shadow: 0 2px 10px rgb(48 48 48 / 50%);
+}
+
+.box-shadow-custom-v2 {
+  box-shadow: 0 2px 10px rgba(33, 32, 32, 0.5);
+}
+
+.persudo-custom {
+  &::before {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: -1.5rem;
+    border-top: 1px solid #c9c9c9;
+    content: "";
+    width: calc(100% + 3rem);
   }
 }

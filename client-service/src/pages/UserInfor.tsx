@@ -7,6 +7,7 @@ import { FiSettings } from "react-icons/fi";
 import { FiDatabase } from "react-icons/fi";
 import { AiOutlineUser, AiOutlineMail } from "react-icons/ai";
 import { BiLockAlt } from "react-icons/bi";
+import { TiGroupOutline } from "react-icons/ti";
 
 import AuthContext from "../context/AuthProvider";
 // import { changeAcountInfor, changeAcountPassword } from "../services/auth";
@@ -21,8 +22,6 @@ interface Props {
 
 const UserInfor: React.FC<Props> = ({ loading, setLoading }) => {
   let { user } = useContext(AuthContext);
-  if (!user.isLogin) window.location.href = "/login";
-  console.log(user);
 
   const [tabActive, setTabActive] = useState("Settings");
   const [accountInfor, setAccountInfor] = useState({
@@ -58,7 +57,7 @@ const UserInfor: React.FC<Props> = ({ loading, setLoading }) => {
   const handleSubmitAccount = async (e: any) => {
     e.preventDefault();
 
-    if (accountInfor.fullName === user.data.fullName && accountInfor.photo === user.data.photo) {
+    if (accountInfor.fullName === user.data.fullName && !accountInfor.photo.name) {
       setMessage("err", "Nothing to update!!!");
     } else {
       setLoading(true);
@@ -70,11 +69,8 @@ const UserInfor: React.FC<Props> = ({ loading, setLoading }) => {
             "Content-Type": accountInfor.photo.type,
           },
         });
-        console.log(data);
         data.photo = res.data.key;
-        console.log(data);
       }
-      console.log(data);
 
       const result = await updateUserInfor(data);
 
@@ -176,11 +172,29 @@ const UserInfor: React.FC<Props> = ({ loading, setLoading }) => {
                       <AiOutlineMail className="absolute top-[50%] left-0 !text-4xl translate-y-[-50%] text-white ml-4" />
                     </div>
                   </div>
+
+                  <div className="flex flex-col gap-5">
+                    <label className="font-semibold text-xl text-white" htmlFor="role">
+                      Role
+                    </label>
+
+                    <div className="relative text-2xl font-normal">
+                      <input
+                        value={user.data.role}
+                        name="role"
+                        id="role"
+                        readOnly
+                        className="lg:w-[54rem] md:w-[40rem] w-[25rem]  py-6 pl-20 rounded-lg bg-color-filter bg-opacity-80"
+                      />
+                      <TiGroupOutline className="absolute top-[50%] left-0 !text-4xl translate-y-[-50%] text-white ml-4" />
+                    </div>
+                  </div>
+
                   <div className="flex md:gap-10 gap-3 items-center">
                     <img
                       src={`https://uwc-bucket.s3.ap-southeast-1.amazonaws.com/${user.data.photo}`}
                       alt={"userphoto"}
-                      className="md:w-[7.5rem] md:h-[7.5rem] w-[5rem] h-[5rem] rounded-full"
+                      className="md:w-[7.5rem] md:h-[7.5rem] w-[5rem] h-[5rem] rounded-full object-cover"
                     />
                     <input
                       disabled={loading}
@@ -200,7 +214,7 @@ const UserInfor: React.FC<Props> = ({ loading, setLoading }) => {
                   </div>
 
                   <div className="flex justify-end lg:w-[54rem] md:w-[40rem] w-[25rem]">
-                    <button className="font-semibold text-xl text-white bg-color-blue bg-opacity-50 rounded-lg px-10 py-5 transition duration-200 hover:bg-opacity-100">
+                    <button className="font-semibold text-xl text-white bg-color-blue hover:bg-color-blue-darker rounded px-10 py-5 transition duration-200">
                       SAVE SETTINGS
                     </button>
                   </div>
@@ -275,7 +289,7 @@ const UserInfor: React.FC<Props> = ({ loading, setLoading }) => {
                   </div>
 
                   <div className="flex justify-end lg:w-[54rem] md:w-[40rem] w-[25rem]">
-                    <button className="font-semibold text-xl text-white bg-color-blue bg-opacity-50 rounded-lg px-10 py-5 transition duration-200 hover:bg-opacity-100">
+                    <button className="font-semibold text-xl text-white bg-color-blue hover:bg-color-blue-darker rounded px-10 py-5 transition duration-200">
                       SAVE SETTINGS
                     </button>
                   </div>

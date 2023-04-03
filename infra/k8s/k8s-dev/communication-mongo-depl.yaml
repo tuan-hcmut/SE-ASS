@@ -1,29 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rabbitmq-mongo-depl
+  name: communication-mongo-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rabbitmq-mongo
+      app: communication-mongo
   template:
     metadata:
       labels:
-        app: rabbitmq-mongo
+        app: communication-mongo
     spec:
       containers:
-        - name: rabbitmq-mongo
+        - name: communication-mongo
           image: mongo
-          imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: rabbitmq-mongo-srv
+  name: communication-mongo-srv
 spec:
   selector:
-    app: rabbitmq-mongo
+    app: communication-mongo
   ports:
     - name: db
       protocol: TCP
