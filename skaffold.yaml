@@ -33,7 +33,7 @@ build:
           - src: "src/**/*.ts"
             dest: .
     - image: uwc/rabbitmq
-      context: rabbitmq-service
+      context: notification-service
       docker:
         dockerfile: Dockerfile
       sync:
