@@ -6,9 +6,13 @@ import RightNavBarSide from "../components/common/RightNavBarSide";
 import ScrollButton from "../components/common/ScrollButton";
 import BackofficerHomeBody from "../components/backofficer/BackofficerHomeBody";
 import AuthContext from "../context/AuthProvider";
+import ChatBox from "../components/common/Chatbox";
+import { UserPayload } from "../shared/variables";
 
 const Home: React.FC = () => {
   const [isActive, setIsActive] = useState(false);
+  const [userChat, setUserChat] = useState<UserPayload>();
+
   const { user } = useContext(AuthContext);
 
   return (
@@ -27,6 +31,7 @@ const Home: React.FC = () => {
           <RightNavBarSide />
         </div>
         <ScrollButton />
+        <ChatBox />
       </div>
     </>
   );

@@ -30,7 +30,7 @@ const LeftNavBarSide: React.FC<active> = ({ isActive }) => {
     <>
       <ToastContainer className={"!text-2xl !font-semibold !text-white"} />
       <div
-        className={`pt-4 pl-10 w-[230px] h-screen fixed z-[100] shrink-0 top-0 min-w-937:sticky min-w-937:block hidden transition duration-200 bg-white ${
+        className={`pt-4 pl-10 text-color-grey-dark w-[230px] h-screen fixed z-[100] shrink-0 top-0 min-w-937:sticky min-w-937:block hidden transition duration-200 bg-white ${
           isActive && "!block  !w-screen !h-screen !pt-48 pl-[40%] !translate-x-0"
         }`}
       >

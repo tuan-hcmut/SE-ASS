@@ -57,7 +57,7 @@ const UserInfor: React.FC<Props> = ({ loading, setLoading }) => {
   const handleSubmitAccount = async (e: any) => {
     e.preventDefault();
 
-    if (accountInfor.fullName === user.data.fullName && accountInfor.photo === user.data.photo) {
+    if (accountInfor.fullName === user.data.fullName && !accountInfor.photo.name) {
       setMessage("err", "Nothing to update!!!");
     } else {
       setLoading(true);
@@ -194,7 +194,7 @@ const UserInfor: React.FC<Props> = ({ loading, setLoading }) => {
                     <img
                       src={`https://uwc-bucket.s3.ap-southeast-1.amazonaws.com/${user.data.photo}`}
                       alt={"userphoto"}
-                      className="md:w-[7.5rem] md:h-[7.5rem] w-[5rem] h-[5rem] rounded-full"
+                      className="md:w-[7.5rem] md:h-[7.5rem] w-[5rem] h-[5rem] rounded-full object-cover"
                     />
                     <input
                       disabled={loading}

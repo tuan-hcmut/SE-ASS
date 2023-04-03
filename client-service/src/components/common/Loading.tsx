@@ -1,9 +1,14 @@
 import React from "react";
 
-const Loading: React.FC = () => {
+interface style {
+  position?: string;
+  background?: string;
+}
+
+const Loading: React.FC<style> = ({ position, background }) => {
   return (
     <>
-      <div className="khongbietten">
+      <div className={`khongbietten ${position} ${background}`}>
         <div className="lds-ripple">
           <div></div>
           <div></div>

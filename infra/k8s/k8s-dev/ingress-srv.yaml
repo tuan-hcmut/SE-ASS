@@ -11,7 +11,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: uwc.net
+    - host: uwcv2.net
       http:
         paths:
           - path: /api/users/?(.*)
@@ -28,11 +28,18 @@ spec:
                 name: mcps-srv
                 port:
                   number: 3000
-          - path: /api/redis/?(.*)
+          - path: /api/communication/?(.*)
             pathType: Prefix
             backend:
               service:
-                name: redis-srv
+                name: communication-srv
+                port:
+                  number: 3000
+          - path: /api/vehicles/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: vehicles-srv
                 port:
                   number: 3000
           - path: /?(.*)

@@ -31,7 +31,7 @@ app.use(viewMCPsRouter);
 // app.use(signoutRouter);
 // app.use(signupRouter);
 
-app.all("*", async () => {
+app.all("*", async (req: Request, res: Response) => {
   // if we use async then this func will return a promise, so we have use next() and attach error in this in order to move to another middleware
   // so we can use express-async-errors package to handle this, so every time throw new err in async func, it will care for us
   throw new NotFoundError();

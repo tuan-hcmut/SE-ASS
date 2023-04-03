@@ -9,13 +9,13 @@ const connectDB = async () => {
   if (!process.env.COOKIE_KEY) throw new Error("COOKIE_KEY must be defined!!!");
   if (!process.env.AWS_ACCESS_KEY) throw new Error("AWS_ACCESS_KEY must be defined!!!");
   if (!process.env.AWS_SECRET_KEY) throw new Error("AWS_SECRET_KEY must be defined!!!");
+  if (!process.env.RABBITMQ_URL) throw new Error("RABBITMQ_URL must be defined!!!");
 
   try {
     await mongoose.connect(process.env.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     } as ConnectOptions);
-
     console.log("Connected DB!!");
   } catch (e) {
     console.log(e);

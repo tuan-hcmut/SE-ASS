@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: communication-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: communication
+  template:
+    metadata:
+      labels:
+        app: communication
+    spec:
+      containers:
+        - name: communication
+          image: 803635532235.dkr.ecr.ap-southeast-1.amazonaws.com/uwc:communication
+          # imagePullPolicy: Always
+          env:
+            - name: MONGO_URL
+              value: "mongodb://communication-mongo-srv:27017/communication"
+            - name: REDIS_HOST
+              value: redis-pod-srv
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+            - name: GOOGLE_ID
+              valueFrom:
+                secretKeyRef:
+                  name: google-id-secret
+                  key: GOOGLE_ID
+            - name: GOOGLE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: google-secret
+                  key: GOOGLE_SECRET
+            - name: COOKIE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cookie-key-secret
+                  key: COOKIE_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: communication-srv
+spec:
+  selector:
+    app: communication
+  ports:
+    - name: communication
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

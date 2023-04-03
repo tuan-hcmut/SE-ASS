@@ -5,8 +5,10 @@ import { BadRequestError } from "@ltt-first-package/common";
 import jwt from "jsonwebtoken";
 import { body } from "express-validator";
 import { promisify } from "util";
+
 const aws = require("aws-sdk");
 const uuid = require("uuid");
+import { pubUser } from "./rabbitController";
 
 //////   acccess to the type have been delare (Request in express) and modify it
 declare global {
@@ -105,6 +107,7 @@ exports.photoUploadUrl = async (req: Request, res: Response) => {
 
 exports.updateUserInfor = async (req: Request, res: Response) => {
   const { id, fullName, photo } = req.body;
+
   const user = await User.findByIdAndUpdate(
     { _id: id },
     {
@@ -118,6 +121,7 @@ exports.updateUserInfor = async (req: Request, res: Response) => {
       runValidators: true,
     }
   );
+
   const token = rendertoken(user);
   req.session = { token: token };
 
@@ -139,6 +143,8 @@ exports.updateUserRole = async (req: Request, res: Response) => {
       runValidators: true,
     }
   );
+
+  pubUser(process.env.RABBITMQ_URL!, "NEW_USER", user);
   const token = rendertoken(user);
   req.session = { token: token };
 

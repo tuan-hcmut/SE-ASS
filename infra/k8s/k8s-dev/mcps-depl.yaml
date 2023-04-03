@@ -16,8 +16,10 @@ spec:
         - name: mcps
           image: uwc/mcps
           env:
-            - name: MONGO_URL
-              value: "mongodb://mcps-mongo-srv:27017/mcps"
+            - name: MYSQL_URL
+              value: "mysql://root:password123@mcps-mysql-srv:3306"
+            - name: RABBITMQ_URL
+              value: "amqp://guest:guest@rabbitmq-srv:5672"
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:

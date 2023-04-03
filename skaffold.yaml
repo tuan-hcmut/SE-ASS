@@ -40,8 +40,8 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: uwc/redis
-      context: redis-service
+    - image: uwc/communication
+      context: communication-service
       docker:
         dockerfile: Dockerfile
       sync:

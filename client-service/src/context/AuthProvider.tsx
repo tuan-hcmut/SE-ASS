@@ -1,17 +1,25 @@
 import React, { createContext, useEffect, useState } from "react";
 import { isLogin } from "../services/auth";
 import { useNavigate } from "react-router-dom";
-
+import { UserPayload } from "../shared/variables";
 interface GeneralProps {
   children: JSX.Element[] | JSX.Element;
 }
 
 interface ContextProps {
-  user: any;
+  user: {
+    inProcess: Boolean;
+    isLogin: Boolean;
+    data: UserPayload;
+  };
 }
 
 const AuthContext = createContext<ContextProps>({
-  user: {},
+  user: {
+    inProcess: true,
+    isLogin: false,
+    data: {},
+  },
 });
 
 export const AuthProvider: React.FC<GeneralProps> = ({ children }) => {

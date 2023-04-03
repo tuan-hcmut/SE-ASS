@@ -1,7 +1,6 @@
 import { DoneCallback } from "passport";
 import { VerifyCallback, Profile } from "passport-google-oauth20";
-import jwt from "jsonwebtoken";
-
+// import { pubUser } from "../controllers/rabbitController";
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const keys = require("../config/keys");

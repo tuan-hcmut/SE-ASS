@@ -11,7 +11,7 @@ module.exports = {
       colors: {
         "color-grey-dark": "#787878",
         "color-grey-light": "#f8f8fc",
-        "color-dark": "#1C1C1E",
+        "color-dark": "#232324",
         "color-darker": "#1a1a1b",
         "color-blue": "#1976d2",
         "color-blue-darker": "#1565c0",
@@ -19,6 +19,8 @@ module.exports = {
         "border-dark": "#222222",
         "color-filter": "#282829",
         "dark-lighten": "#333335",
+        "green-dark": "#1d292e",
+        "grey-card": "#c9c9c9",
       },
       screens: {
         "min-w-937": "937px",

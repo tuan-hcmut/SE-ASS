@@ -18,6 +18,8 @@ spec:
           env:
             - name: MONGO_URL
               value: "mongodb://users-mongo-srv:27017/users"
+            - name: RABBITMQ_URL
+              value: "amqp://guest:guest@rabbitmq-srv:5672"
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
