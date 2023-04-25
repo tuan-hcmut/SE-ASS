@@ -74,11 +74,7 @@ const BackofficerHomeBody: React.FC = () => {
                   >
                     <div className="flex gap-3 items-center">
                       <div className="relative">
-                        <img
-                          className="w-[4rem] h-[4rem] rounded-full object-cover shrink-0"
-                          src={`https://uwc-bucket.s3.ap-southeast-1.amazonaws.com/${el.photo}`}
-                          alt="user"
-                        />
+                        <img className="w-[4rem] h-[4rem] rounded-full object-cover shrink-0" src={`/${el.photo}`} alt="user" />
                         <div className="absolute w-[1rem] h-[1rem] rounded-full bg-green-600 bottom-[-1px] right-[0px]"></div>
                       </div>
                       <div className="text-2xl text-black font-medium">{el.fullName}</div>
@@ -121,11 +117,7 @@ const BackofficerHomeBody: React.FC = () => {
                   >
                     <div className="flex gap-3 items-center">
                       <div className="relative">
-                        <img
-                          className="w-[4rem] h-[4rem] rounded-full object-cover shrink-0"
-                          src={`https://uwc-bucket.s3.ap-southeast-1.amazonaws.com/${el.photo}`}
-                          alt="user"
-                        />
+                        <img className="w-[4rem] h-[4rem] rounded-full object-cover shrink-0" src={`/${el.photo}`} alt="user" />
                         <div className="absolute w-[1rem] h-[1rem] rounded-full bg-green-600 bottom-[-1px] right-[0px]"></div>
                       </div>
                       <div className="text-2xl text-black font-medium">{el.fullName}</div>

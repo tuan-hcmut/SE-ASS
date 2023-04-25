@@ -17,6 +17,8 @@ interface ContextProps {
   setMessage: any;
   listMessage: any;
   setListMessage: any;
+  listLocations: { lng: number; lat: number; capacity: number }[];
+  setListLocation: any;
 }
 
 const GeneralContext = createContext<ContextProps>({
@@ -28,6 +30,8 @@ const GeneralContext = createContext<ContextProps>({
   setMessage: () => {},
   listMessage: [""],
   setListMessage: () => {},
+  listLocations: [],
+  setListLocation: () => {},
 });
 
 export const GeneralProvider: React.FC<GeneralProps> = ({ children }) => {
@@ -35,6 +39,7 @@ export const GeneralProvider: React.FC<GeneralProps> = ({ children }) => {
   const [listUsers, setListUsers] = useState<UserPayload[][]>([]);
   const [message, setMessage] = useState("");
   const [listMessage, setListMessage] = useState<string[]>([]);
+  const [listLocations, setListLocation] = useState<{ lng: number; lat: number; capacity: number }[]>([]);
 
   const { user } = useContext(AuthContext);
 
@@ -69,7 +74,9 @@ export const GeneralProvider: React.FC<GeneralProps> = ({ children }) => {
   }, []);
 
   return (
-    <GeneralContext.Provider value={{ userChat, setUserChat, listUsers, setListUsers, listMessage, setListMessage, message, setMessage }}>
+    <GeneralContext.Provider
+      value={{ userChat, setUserChat, listUsers, setListUsers, listMessage, setListMessage, message, setMessage, listLocations, setListLocation }}
+    >
       {children}
     </GeneralContext.Provider>
   );

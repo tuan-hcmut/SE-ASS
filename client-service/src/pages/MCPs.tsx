@@ -11,8 +11,12 @@ import Loading from "../components/common/Loading";
 import Footer from "../components/common/Footer";
 import { RiMapPin2Line } from "react-icons/ri";
 import { AiOutlineDatabase } from "react-icons/ai";
+import ChatBox from "../components/common/Chatbox";
+import GeneralContext from "../context/generalProvider";
 
 const MCPs: React.FC = () => {
+  const { listLocations, setListLocation } = useContext(GeneralContext);
+
   const [isActive, setIsActive] = useState(false);
   const [location, setLocation] = useState({
     lat: 10.823099,
@@ -22,7 +26,7 @@ const MCPs: React.FC = () => {
   const [longitude, setLongitude] = useState<number>();
   const [latitude, setLatitude] = useState<number>();
 
-  const [listLocations, setListLocation] = useState<{ lng: number; lat: number; capacity: number }[]>([]);
+  const [timeLeft, setTimeLeft] = useState<number>(15 * 60 * 1000);
 
   const containerStyle = {
     width: "100%",
@@ -56,7 +60,17 @@ const MCPs: React.FC = () => {
 
       return arr;
     };
+
+    const interval = setInterval(() => {
+      if (timeLeft <= 0) {
+        setTimeLeft(15 * 60 * 1000);
+        setListLocation(getRandomLogLag());
+      } else setTimeLeft((prevTimeLeft) => prevTimeLeft - 1000);
+    }, 1000);
+
     setListLocation(getRandomLogLag());
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleOnchange = (e: any) => {
@@ -77,7 +91,7 @@ const MCPs: React.FC = () => {
           <LeftNavBarSide isActive={isActive} />
           {/*        middle home           */}
           <div className=" bg-color-grey-light grow w-0">
-            <TopHeadBody />
+            <TopHeadBody mcps={listLocations} />
             <div className="sm:px-12 px-6 py-8">
               {isLoaded ? (
                 <GoogleMap mapContainerStyle={containerStyle} center={location} zoom={-10} onLoad={onLoad}>
@@ -136,7 +150,23 @@ const MCPs: React.FC = () => {
                   </div>
                 </div>
               </div>
-
+              <div className="text-2xl font-semibold w-[100] flex justify-end mb-[1rem] text-black">
+                <div className="flex gap-3 items-center">
+                  <div>Update In:</div>
+                  <div className="flex items-end">
+                    <div className="text-4xl">{Math.floor((timeLeft / (1000 * 60 * 60)) % 24)}</div>
+                    <div className=" font-light">Hour</div>
+                  </div>
+                  <div className="flex items-end">
+                    <div className="text-4xl">{Math.floor((timeLeft / 1000 / 60) % 60)}</div>
+                    <div className="font-light">Minute</div>
+                  </div>
+                  <div className="flex items-end">
+                    <div className="text-4xl">{Math.floor((timeLeft / 1000) % 60)}</div>
+                    <div className="font-light">Second</div>
+                  </div>
+                </div>
+              </div>
               <div className="w-[100%] h-[50rem] overflow-y-scroll scrollbar box-shadow-custom rounded text-black">
                 {listLocations ? (
                   listLocations.map((el, index) => {
@@ -177,6 +207,7 @@ const MCPs: React.FC = () => {
           {/*        RightNavBarSide         */}
           <RightNavBarSide />
         </div>
+        <ChatBox />
         <ScrollButton />
       </div>
     </>

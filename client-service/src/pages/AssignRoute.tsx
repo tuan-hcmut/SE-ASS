@@ -4,10 +4,10 @@ import NavBarForMob from "../components/common/NavBarForMob";
 import LeftNavBarSide from "../components/common/LeftNavBarSide";
 import RightNavBarSide from "../components/common/RightNavBarSide";
 import ScrollButton from "../components/common/ScrollButton";
-import VehiclesInfor from "../components/common/VehiclesInfor";
 import ChatBox from "../components/common/Chatbox";
+import AssignRouteInfor from "../components/common/AssignRouteInfor";
 
-const Vehicle: React.FC = () => {
+const AssignRoute: React.FC = () => {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -19,7 +19,7 @@ const Vehicle: React.FC = () => {
           <LeftNavBarSide isActive={isActive} />
           {/*        middle home           */}
           <div className=" bg-color-grey-light grow w-0">
-            <VehiclesInfor />
+            <AssignRouteInfor />
           </div>
 
           {/*        RightNavBarSide         */}
@@ -32,4 +32,4 @@ const Vehicle: React.FC = () => {
   );
 };
 
-export default Vehicle;
+export default AssignRoute;

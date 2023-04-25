@@ -30,13 +30,7 @@ const RightNavBarSide: React.FC = () => {
           href="/user/userinfor"
         >
           <div className="flex items-center gap-4">
-            <img
-              src={`https://uwc-bucket.s3.ap-southeast-1.amazonaws.com/${
-                user.data.photo ? user.data.photo : "640f3f4a676e2fa7c7bfb3c0/user-default/logo.png"
-              }`}
-              alt="user-img"
-              className="w-[4.8rem] h-[4.5rem] rounded-full object-cover shrink-0"
-            />
+            <img src={`/logo.png`} alt="user-img" className="w-[4.8rem] h-[4.5rem] rounded-full object-cover shrink-0" />
             <div className="flex flex-col gap-0 grow ">
               <h2 className="text-2xl font-extrabold text-black uppercase overflow-hidden text-ellipsis whitespace-nowrap w-[17rem]">
                 {user.isLogin ? user.data.fullName : "Anonymous"}
@@ -74,11 +68,7 @@ const RightNavBarSide: React.FC = () => {
                       }}
                     >
                       <div className="relative">
-                        <img
-                          className="w-[4rem] h-[4rem] rounded-full object-cover shrink-0"
-                          src={`https://uwc-bucket.s3.ap-southeast-1.amazonaws.com/${el[0].photo}`}
-                          alt="user"
-                        />
+                        <img className="w-[4rem] h-[4rem] rounded-full object-cover shrink-0" src={`/${el[0].photo}`} alt="user" />
                         <div className="absolute w-[1rem] h-[1rem] rounded-full bg-green-600 bottom-[-1px] right-[0px]"></div>
                       </div>
                       <div className="text-black text-2xl font-semibold">{el[0].fullName}</div>
@@ -95,11 +85,7 @@ const RightNavBarSide: React.FC = () => {
                       }}
                     >
                       <div className="relative">
-                        <img
-                          className="w-[4rem] h-[4rem] rounded-full object-cover shrink-0"
-                          src={`https://uwc-bucket.s3.ap-southeast-1.amazonaws.com/${el.photo}`}
-                          alt="user"
-                        />
+                        <img className="w-[4rem] h-[4rem] rounded-full object-cover shrink-0" src={`/${el.photo}`} alt="user" />
                         <div className="absolute w-[1rem] h-[1rem] rounded-full bg-green-600 bottom-[-1px] right-[0px]"></div>
                       </div>
                       <div className="text-black text-2xl font-semibold">{el.fullName}</div>

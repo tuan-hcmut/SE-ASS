@@ -49,5 +49,5 @@ module.exports.recieveMessage = async (socket: CustomSocket, data: MessageData) 
   await redisClient.lpush(`chat:${data.userChat.id}`, dataStore);
   await redisClient.lpush(`chat:${data.user.id}`, dataStore);
   const messages = await redisClient.lrange(`chat:${socket.currentUser?.id}`, 0, -1);
-  socket.to(data.userChat?.id!).emit("send-message", { messages, userChat: data.userChat });
+  socket.to(data.userChat?.id!).emit("send-message", { messages, userChat: data.user });
 };

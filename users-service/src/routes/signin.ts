@@ -22,7 +22,7 @@ router.get(
 );
 
 router.get("/api/users/auth/google/callback", passport.authenticate("google"), (req: Request, res: Response) => {
-  return res.redirect(process.env.NODE_ENV === "production" ? "http://uwcv2.site" : "http://uwcv2.net");
+  return res.redirect("http://uwcv2.net");
 });
 
 export { router as signinRouter };

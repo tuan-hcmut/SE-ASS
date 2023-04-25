@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema(
     photo: {
       type: String,
       require: true,
-      default: "640f3f4a676e2fa7c7bfb3c0/user-default/logo.png",
+      default: "logo.png",
     },
 
     role: {

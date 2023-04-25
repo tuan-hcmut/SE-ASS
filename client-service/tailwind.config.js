@@ -21,6 +21,8 @@ module.exports = {
         "dark-lighten": "#333335",
         "green-dark": "#1d292e",
         "grey-card": "#c9c9c9",
+        "color-disable": "#afafaf",
+        "bg-disable": "#e0e0e0",
       },
       screens: {
         "min-w-937": "937px",

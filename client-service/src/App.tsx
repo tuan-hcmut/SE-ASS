@@ -11,6 +11,11 @@ import Vehicle from "./pages/Vehicle";
 import { GeneralProvider } from "./context/generalProvider";
 import AuthContext from "./context/AuthProvider";
 import MCPs from "./pages/MCPs";
+import AssignVehicle from "./pages/AssignVehicle";
+import AssignMcps from "./pages/AssignMcps";
+import NotFoundError from "./pages/NotFoundError";
+import TaskAssign from "./components/janitor-collector/TaskAssign";
+import AssignRoute from "./pages/AssignRoute";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -28,6 +33,11 @@ function App() {
           <Route path="user/selectrole" element={<SelectRole loading={loading} setLoading={setLoading} />} />
           <Route path="vehicles/infor" element={<Vehicle />} />
           <Route path="mcps" element={<MCPs />} />
+          <Route path="vehicles/assign" element={<AssignVehicle />} />
+          <Route path="route/create" element={<AssignRoute />} />
+          <Route path="task/assigned" element={<TaskAssign />} />
+          <Route path="mcps/assign" element={<AssignMcps />} />
+          <Route path="*" element={<NotFoundError />} />
         </Routes>
       </div>
     </GeneralProvider>

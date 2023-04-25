@@ -56,17 +56,14 @@ const ChatBox: React.FC = () => {
   const handleCloseBoxChat = () => {
     setUserChat(undefined);
   };
+
   return (
     <>
       <div className={`${userChat ? "fixed" : "hidden"} w-[35rem] h-[45rem] bottom-0 right-[23%] bg-linear-color z-10 rounded-t`}>
         <div className="w-[100%] h-[5rem] border-b-[1px] border-color-grey-dark">
           <div className="flex justify-between h-[100%] px-5 items-center">
             <div className="flex gap-4 items-center">
-              <img
-                src={`https://uwc-bucket.s3.ap-southeast-1.amazonaws.com/${userChat?.photo}`}
-                alt="img"
-                className="w-[3.5rem] h-[3.5rem] object-cover rounded-full"
-              />
+              <img src={`/${userChat?.photo}`} alt="img" className="w-[3.5rem] h-[3.5rem] object-cover rounded-full" />
               <div className="text-2xl font-medium text-white">
                 <div className="flex flex-col gap-1">
                   <div>{userChat?.fullName}</div>
@@ -94,11 +91,7 @@ const ChatBox: React.FC = () => {
                   <div className={`${userChat?.id === el.split(".")[1] && "flex items-center gap-4 self-start"}`}>
                     {userChat?.id === el.split(".")[1] && (
                       <div>
-                        <img
-                          src={`https://uwc-bucket.s3.ap-southeast-1.amazonaws.com/${userChat?.photo}`}
-                          alt="img"
-                          className="w-[3.5rem] h-[3.5rem] object-cover rounded-full"
-                        />
+                        <img src={`/${userChat?.photo}`} alt="img" className="w-[3.5rem] h-[3.5rem] object-cover rounded-full" />
                       </div>
                     )}
                     <div

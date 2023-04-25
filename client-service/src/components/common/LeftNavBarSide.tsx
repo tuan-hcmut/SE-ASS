@@ -86,7 +86,7 @@ const LeftNavBarSide: React.FC<active> = ({ isActive }) => {
             <>
               <Link to={"/mcps/assign"} className={`flex-icons relative ${location.pathname === "/mcps/assign" && "  !font-semibold !text-black "} `}>
                 <HiOutlinePencilSquare className="text-4xl" />
-                <h3>Assign MPCs</h3>
+                <h3>Assign MCPs</h3>
                 <div className={`${location.pathname === "/mcps/assign" && "w-[3.5px] h-[120%] bg-black absolute right-0 rounded-l-xl"}`}></div>
               </Link>
               <Link

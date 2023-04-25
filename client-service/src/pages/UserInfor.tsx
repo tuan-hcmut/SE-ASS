@@ -192,7 +192,7 @@ const UserInfor: React.FC<Props> = ({ loading, setLoading }) => {
 
                   <div className="flex md:gap-10 gap-3 items-center">
                     <img
-                      src={`https://uwc-bucket.s3.ap-southeast-1.amazonaws.com/${user.data.photo}`}
+                      src={`/${user.data.photo}`}
                       alt={"userphoto"}
                       className="md:w-[7.5rem] md:h-[7.5rem] w-[5rem] h-[5rem] rounded-full object-cover"
                     />

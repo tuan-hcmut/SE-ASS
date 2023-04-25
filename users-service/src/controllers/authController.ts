@@ -95,7 +95,7 @@ exports.photoUploadUrl = async (req: Request, res: Response) => {
   s3.getSignedUrl(
     "putObject",
     {
-      Bucket: "uwc-bucket",
+      Bucket: "uwcv2-bucket",
       ContentType: type,
       Key: key,
     },
